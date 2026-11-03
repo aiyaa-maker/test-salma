@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pastel iMac Online Shop & Queue Check</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pastelSky: '#A8DADC',
+            pastelBlueDark: '#457B9D',
+            pastelOrange: '#FFB703',
+            pastelYellow: '#FFE494',
+            pastelCream: '#FFF8E7',
+            pastelPink: '#FFCAD4',
+            pastelGreen: '#B7E4C7',
+          },
+          fontFamily: {
+            kanit: ['Kanit', 'sans-serif'],
+            fredoka: ['Fredoka', 'sans-serif'],
+          },
+          boxShadow: {
+            'imac': '0 20px 40px -10px rgba(69, 123, 157, 0.25), 0 0 0 10px #F0F4F8',
+            'soft': '0 8px 24px rgba(168, 218, 220, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(135deg, #e0f2fe 0%, #fef3c7 50%, #ffe4e6 100%);
+      min-height: 100vh;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F0F4F8;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #A8DADC;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #457B9D;
+    }
+
+    /* Floating Animations for Background Pixel Elements */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(6deg); }
+    }
+    @keyframes floatMedium {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(-8deg); }
+    }
+    @keyframes floatFast {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(4deg); }
+    }
+    
+    .pixel-bg-1 { animation: floatSlow 6s ease-in-out infinite; }
+    .pixel-bg-2 { animation: floatMedium 5s ease-in-out infinite 1s; }
+    .pixel-bg-3 { animation: floatFast 4s ease-in-out infinite 2s; }
+    .pixel-bg-4 { animation: floatSlow 7s ease-in-out infinite 0.5s; }
+
+    /* Audio Equalizer Bar Animation */
+    .eq-bar {
+      animation: bounce 0.8s infinite alternate ease-in-out;
+    }
+    @keyframes bounce {
+      0% { height: 3px; }
+      100% { height: 14px; }
+    }
+  </style>
+</head>
+<body class="text-gray-700 pb-20 pt-4 px-2 sm:px-4 flex justify-center items-center relative overflow-x-hidden min-h-screen">
+
+  <!-- ================= BACKGROUND FLOATING PIXEL DECORATIONS ================= -->
+  <div class="fixed top-8 left-6 text-3xl select-none pointer-events-none pixel-bg-1 z-0">☁️</div>
+  <div class="fixed top-20 right-8 text-2xl select-none pointer-events-none pixel-bg-2 z-0">💖</div>
+  <div class="fixed top-1/3 left-4 text-2xl select-none pointer-events-none pixel-bg-3 z-0">✨</div>
+  <div class="fixed bottom-28 left-8 text-3xl select-none pointer-events-none pixel-bg-4 z-0">⭐</div>
+  <div class="fixed bottom-16 right-6 text-2xl select-none pointer-events-none pixel-bg-1 z-0">🌸</div>
+  <div class="fixed top-1/2 right-4 text-2xl select-none pointer-events-none pixel-bg-2 z-0">👾</div>
+
+  <!-- ================= MAIN iMac CONTAINER (Max Width 440px) ================= -->
+  <div class="w-full max-w-[440px] bg-white rounded-3xl shadow-imac border-4 border-white overflow-hidden flex flex-col h-[90vh] max-h-[820px] relative z-10">
+
+    <!-- iMac Monitor Header Bar -->
+    <div class="bg-slate-100 border-b border-slate-200 px-3.5 py-2.5 flex items-center justify-between shrink-0">
+      <!-- Apple Buttons (Red, Yellow, Green) -->
+      <div class="flex items-center space-x-1.5">
+        <div class="w-3 h-3 rounded-full bg-red-400 cursor-pointer hover:bg-red-500 transition shadow-sm"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-400 cursor-pointer hover:bg-yellow-500 transition shadow-sm"></div>
+        <div class="w-3 h-3 rounded-full bg-green-400 cursor-pointer hover:bg-green-500 transition shadow-sm"></div>
+        <span class="text-[10px] text-slate-400 ml-1 font-mono"><i class="fa-solid font-fredoka fa-desktop mr-1"></i>iMac</span>
+      </div>
+
+      <!-- Music Player Bar Header -->
+      <div class="flex items-center bg-white border border-slate-200 px-2.5 py-1 rounded-full shadow-sm text-[11px] space-x-1.5">
+        <button id="playAudioBtn" onclick="toggleAudio()" class="w-5 h-5 rounded-full bg-pastelOrange text-white flex items-center justify-center hover:scale-105 transition">
+          <i id="playIcon" class="fa-solid fa-play text-[9px]"></i>
+        </button>
+        <span class="font-medium text-slate-600 truncate max-w-[90px]" id="songTitleDisplay">Background Music</span>
+        <!-- EQ Animation -->
+        <div id="eqContainer" class="flex items-end space-x-0.5 h-3.5 px-0.5 hidden">
+          <div class="w-0.5 bg-pastelOrange eq-bar" style="animation-delay: 0.1s"></div>
+          <div class="w-0.5 bg-pastelSky eq-bar" style="animation-delay: 0.3s"></div>
+          <div class="w-0.5 bg-pastelOrange eq-bar" style="animation-delay: 0.2s"></div>
+        </div>
+        <audio id="bgAudio" loop></audio>
+      </div>
+
+      <!-- Admin Status Toggle Button -->
+      <div class="flex items-center space-x-1">
+        <span id="adminBadge" class="hidden px-1.5 py-0.5 text-[9px] font-bold bg-red-100 text-red-600 rounded-full animate-pulse">ADMIN</span>
+        <button onclick="handleAdminClick()" class="text-slate-400 hover:text-slate-600 text-xs p-1 rounded-lg hover:bg-slate-200 transition" title="หลังบ้าน">
+          <i class="fa-solid fa-gear"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN DISPLAY SCREEN AREA (Scrollable) -->
+    <div class="flex-1 bg-pastelCream/30 overflow-y-auto p-3.5 space-y-4" id="mainScreen">
+
+      <!-- TOP COVER BANNER (แสดงสเกลรูปพอดีกรอบ) -->
+      <div class="w-full rounded-2xl overflow-hidden shadow-sm border-2 border-white bg-white relative flex items-center justify-center min-h-[140px] max-h-[220px]">
+        <img id="topBannerImg" src="https://i.postimg.cc/cJSDqkVJ/line-oa-chat-261104-013813.jpg" alt="Shop Banner Cover" class="w-full h-auto max-h-[220px] object-contain" onerror="this.src='https://placehold.co/600x300/A8DADC/ffffff?text=Pastel+Shop+Banner'">
+        <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-slate-700 shadow-sm border border-slate-100">
+          ✨ Official Store
+        </div>
+      </div>
+
+      <!-- TAB 1: HOME -->
+      <div id="tab-home" class="tab-content space-y-4">
+        
+        <!-- Sticky Notice Note -->
+        <div class="bg-pastelYellow/80 border-2 border-amber-200 rounded-2xl p-3.5 shadow-sm relative">
+          <div class="absolute -top-2.5 left-4 bg-amber-400 text-white text-[9px] px-2.5 py-0.5 rounded-full font-bold shadow-sm uppercase tracking-wider">
+            📌 Notice Note
+          </div>
+          <div class="flex items-start space-x-2.5 mt-0.5">
+            <div class="text-amber-600 text-base mt-0.5"><i class="fa-solid fa-note-sticky"></i></div>
+            <div class="flex-1">
+              <h3 class="font-bold text-amber-900 text-xs mb-0.5" id="shopNoticeTitle">ข้อความสำคัญจากร้านค้า</h3>
+              <p class="text-[11px] text-amber-800 leading-relaxed font-light whitespace-pre-line" id="shopNoticeText">
+                ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเราค่ะ! สอบถามกลุ่มหรือสั่งซื้อกดที่ปุ่มโซเชียลด้านล่างได้เลยน้า 💖
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shop Profile Info -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex items-center space-x-3.5">
+          <div class="relative shrink-0">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border-2 border-pastelSky shadow-sm bg-slate-50 flex items-center justify-center">
+              <img id="shopLogoImg" src="https://placehold.co/150x150/FFB703/ffffff?text=LOGO" alt="Shop Logo" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-1 -right-1 bg-green-500 text-white w-4 h-4 rounded-full flex items-center justify-center text-[9px] border-2 border-white" title="Online">
+              ✓
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="text-base font-bold text-slate-800 font-fredoka truncate" id="shopName">Pastel Art & Font Shop</h2>
+            <p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5" id="shopBio">แหล่งรวมกลุ่มของตกแต่ง กลุ่มตูน กลุ่มฟอนต์ และไฟล์งานน่ารักๆ ลิขสิทธิ์แท้ 100%</p>
+            
+            <div class="flex items-center space-x-2 mt-2 text-[10px] text-slate-600">
+              <span class="bg-slate-100 px-2 py-0.5 rounded-full"><i class="fa-solid fa-layer-group text-pastelOrange mr-1"></i><span id="groupCountBadge">0</span> กลุ่ม</span>
+              <span class="bg-slate-100 px-2 py-0.5 rounded-full"><i class="fa-solid fa-clock text-pastelSky mr-1"></i>ตอบไว</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Channels -->
+        <div>
+          <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 px-1"><i class="fa-solid fa-paper-plane mr-1 text-pastelOrange"></i>ช่องทางการติดต่อ</h3>
+          <div class="grid grid-cols-2 gap-2" id="socialLinksContainer">
+            <!-- Social Buttons Dynamic -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: PRICE (Grid 2 คอลัมน์) -->
+      <div id="tab-price" class="tab-content hidden space-y-3.5">
+        
+        <!-- Header & Category Filter Tags -->
+        <div class="bg-white p-3 rounded-2xl border border-slate-100 shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-bold text-slate-800"><i class="fa-solid fa-tags text-pastelOrange mr-1.5"></i>รายการกลุ่มสินค้า</h2>
+            <span class="text-[10px] bg-pastelSky/30 text-slate-700 px-2 py-0.5 rounded-full font-medium" id="totalGroupsTag">รวม 0 กลุ่ม</span>
+          </div>
+
+          <!-- Filter Tags -->
+          <div class="flex flex-wrap gap-1 pt-1.5 border-t border-slate-100" id="categoryFilterContainer">
+            <!-- Filter buttons -->
+          </div>
+        </div>
+
+        <!-- Groups Grid (2 Columns Layout) -->
+        <div class="grid grid-cols-2 gap-2.5" id="groupsGrid">
+          <!-- Group Cards Dynamic Insertion -->
+        </div>
+
+      </div>
+
+      <!-- TAB 3: Q CHECK (เช็คคิวงาน) -->
+      <div id="tab-qcheck" class="tab-content hidden space-y-3.5">
+        
+        <!-- Summary Counters Header -->
+        <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-100 text-center space-y-2">
+          <div class="inline-block bg-pastelOrange/20 text-pastelOrange font-bold text-[10px] px-2.5 py-0.5 rounded-full">
+            📋 ตารางติดตามคิวจัดส่ง
+          </div>
+          <h2 class="text-lg font-bold text-slate-800 font-fredoka">Queue Status Check</h2>
+          
+          <div class="flex justify-center items-center space-x-2 pt-1">
+            <div class="bg-pastelSky/20 border border-pastelSky/40 px-3 py-1.5 rounded-xl text-center flex-1">
+              <span class="text-base font-extrabold text-slate-800 block" id="totalQueueCount">0</span>
+              <span class="text-[9px] text-slate-600 font-medium">คิวทั้งหมด</span>
+            </div>
+            <div class="bg-pastelYellow/40 border border-pastelYellow/60 px-3 py-1.5 rounded-xl text-center flex-1">
+              <span class="text-base font-extrabold text-amber-700 block" id="pendingQueueCount">0</span>
+              <span class="text-[9px] text-slate-600 font-medium">รอดำเนินการ</span>
+            </div>
+            <div class="bg-pastelGreen/40 border border-pastelGreen/60 px-3 py-1.5 rounded-xl text-center flex-1">
+              <span class="text-base font-extrabold text-emerald-700 block" id="completedQueueCount">0</span>
+              <span class="text-[9px] text-slate-600 font-medium">เสร็จสิ้น</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Queue List -->
+        <div class="space-y-2.5" id="queueListContainer">
+          <!-- Queue items rendered by JS -->
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- STICKY BOTTOM NAVIGATION BAR -->
+    <div class="bg-white border-t border-slate-200 px-4 py-1.5 flex justify-around items-center shrink-0 shadow-lg">
+      <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center py-1 px-3 rounded-xl text-pastelOrange font-medium transition duration-200">
+        <span class="text-lg">🏠</span>
+        <span class="text-[10px] mt-0.5">Home</span>
+      </button>
+      
+      <button onclick="switchTab('price')" id="nav-price" class="nav-btn flex flex-col items-center py-1 px-3 rounded-xl text-slate-400 font-medium hover:text-pastelOrange transition duration-200">
+        <span class="text-lg">🎀</span>
+        <span class="text-[10px] mt-0.5">Price</span>
+      </button>
+      
+      <button onclick="switchTab('qcheck')" id="nav-qcheck" class="nav-btn flex flex-col items-center py-1 px-3 rounded-xl text-slate-400 font-medium hover:text-pastelOrange transition duration-200">
+        <span class="text-lg">👤</span>
+        <span class="text-[10px] mt-0.5">Q Check</span>
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- ================= ADMIN AUTH MODAL (รหัสผ่านเข้าหลังบ้าน) ================= -->
+  <div id="adminAuthModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex justify-center items-center p-3 hidden">
+    <div class="bg-white w-full max-w-xs rounded-3xl shadow-2xl overflow-hidden border-4 border-slate-100 p-5 text-center space-y-3">
+      <div class="w-12 h-12 bg-pastelYellow/50 text-amber-600 rounded-full flex items-center justify-center mx-auto text-xl border border-amber-300">
+        🔒
+      </div>
+      <div>
+        <h3 class="font-bold text-base text-slate-800">เข้าสู่ระบบหลังบ้าน</h3>
+        <p class="text-[11px] text-slate-500 mt-0.5">รหัสผ่านเริ่มต้นคือ <span class="font-mono bg-slate-100 px-1 rounded text-amber-600 font-bold">1234</span></p>
+      </div>
+
+      <div>
+        <input type="password" id="adminPasscodeInput" placeholder="กรอกรหัสผ่าน" class="w-full text-center text-base font-mono tracking-widest border border-slate-300 rounded-xl p-2.5 focus:ring-2 focus:ring-pastelOrange outline-none">
+        <p id="passcodeError" class="text-[11px] text-red-500 font-bold mt-1 hidden">❌ รหัสผ่านไม่ถูกต้อง!</p>
+      </div>
+
+      <div class="flex space-x-2 pt-1">
+        <button onclick="verifyAdminPasscode()" class="flex-1 bg-pastelOrange text-white font-bold py-2 rounded-xl shadow-md hover:bg-amber-500 text-xs transition">
+          ตกลง
+        </button>
+        <button onclick="closeAdminAuthModal()" class="bg-slate-200 text-slate-600 font-bold px-3 py-2 rounded-xl text-xs hover:bg-slate-300 transition">
+          ยกเลิก
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= ADMIN CONTROL PANEL MODAL ================= -->
+  <div id="adminModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex justify-center items-center p-3 hidden">
+    <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl max-h-[85vh] flex flex-col overflow-hidden border-4 border-slate-100">
+      
+      <!-- Modal Header -->
+      <div class="bg-slate-800 text-white px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-sliders text-pastelOrange text-sm"></i>
+          <h3 class="font-bold text-sm">ระบบจัดการหลังบ้าน (Admin Control)</h3>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="logoutAdmin()" class="bg-red-500/80 hover:bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-lg transition">
+            <i class="fa-solid fa-right-from-bracket mr-1"></i>ออก
+          </button>
+          <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white text-lg">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="flex border-b border-slate-200 bg-slate-50 px-4 pt-2 space-x-1">
+        <button onclick="switchAdminTab('general')" id="adminTab-general" class="admin-tab-btn px-3 py-1.5 rounded-t-xl font-bold text-[11px] bg-white border-t-2 border-pastelOrange text-slate-800">
+          ⚙️ ข้อมูลทั่วไป
+        </button>
+        <button onclick="switchAdminTab('groups')" id="adminTab-groups" class="admin-tab-btn px-3 py-1.5 rounded-t-xl font-bold text-[11px] text-slate-500 hover:text-slate-800">
+          🎀 จัดการกลุ่ม
+        </button>
+        <button onclick="switchAdminTab('queues')" id="adminTab-queues" class="admin-tab-btn px-3 py-1.5 rounded-t-xl font-bold text-[11px] text-slate-500 hover:text-slate-800">
+          👤 จัดการคิว
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+        
+        <!-- ADMIN TAB: GENERAL -->
+        <div id="adminContent-general" class="admin-content space-y-3">
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block font-bold text-slate-600 mb-0.5">ชื่อร้านค้า</label>
+              <input type="text" id="editShopName" class="w-full border rounded-lg p-2 focus:ring-1 focus:ring-pastelSky outline-none">
+            </div>
+            <div>
+              <label class="block font-bold text-slate-600 mb-0.5">รหัสผ่านหลังบ้าน</label>
+              <input type="text" id="editAdminPasscode" class="w-full border rounded-lg p-2 focus:ring-1 focus:ring-pastelSky outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-600 mb-0.5">คำอธิบายร้านค้า (Bio)</label>
+            <input type="text" id="editShopBio" class="w-full border rounded-lg p-2 focus:ring-1 focus:ring-pastelSky outline-none">
+          </div>
+
+          <!-- Banner Direct Image Upload -->
+          <div class="space-y-1">
+            <label class="block font-bold text-slate-600">รูปภาพปกชีต (แนบภาพจากเครื่อง หรือวาง URL)</label>
+            <div class="flex flex-col sm:flex-row gap-1.5">
+              <input type="file" accept="image/*" onchange="handleBannerFileUpload(event)" class="text-[10px] file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:bg-pastelSky file:text-slate-800 cursor-pointer">
+              <input type="text" id="editBannerUrl" placeholder="URL รูปภาพ" class="flex-1 border rounded-lg p-1.5 focus:ring-1 focus:ring-pastelSky outline-none">
+            </div>
+          </div>
+
+          <!-- Logo Direct Image Upload -->
+          <div class="space-y-1">
+            <label class="block font-bold text-slate-600">โลโก้ร้านค้า</label>
+            <div class="flex flex-col sm:flex-row gap-1.5">
+              <input type="file" accept="image/*" onchange="handleLogoFileUpload(event)" class="text-[10px] file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:bg-pastelOrange file:text-white cursor-pointer">
+              <input type="text" id="editLogoUrl" placeholder="URL โลโก้" class="flex-1 border rounded-lg p-1.5 focus:ring-1 focus:ring-pastelSky outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-600 mb-0.5">URL เพลงประกอบ (.mp3)</label>
+            <input type="text" id="editMusicUrl" class="w-full border rounded-lg p-2 focus:ring-1 focus:ring-pastelSky outline-none" placeholder="https://example.com/song.mp3">
+          </div>
+
+          <div class="pt-2 border-t">
+            <label class="block font-bold text-slate-600 mb-0.5">หัวข้อโน๊ตประกาศ</label>
+            <input type="text" id="editNoticeTitle" class="w-full border rounded-lg p-2 mb-1.5 focus:ring-1 focus:ring-pastelSky outline-none">
+            <label class="block font-bold text-slate-600 mb-0.5">เนื้อหาโน๊ตประกาศ</label>
+            <textarea id="editNoticeText" rows="2" class="w-full border rounded-lg p-2 focus:ring-1 focus:ring-pastelSky outline-none"></textarea>
+          </div>
+
+          <div class="pt-2 border-t space-y-1.5">
+            <h5 class="font-bold text-slate-600">ลิงก์โซเชียลสั่งซื้อ</h5>
+            <div class="grid grid-cols-2 gap-1.5">
+              <input type="text" id="editSocialLine" placeholder="LINE Link" class="border rounded-lg p-1.5">
+              <input type="text" id="editSocialFb" placeholder="Facebook Link" class="border rounded-lg p-1.5">
+              <input type="text" id="editSocialIg" placeholder="IG Link" class="border rounded-lg p-1.5">
+              <input type="text" id="editSocialTiktok" placeholder="TikTok Link" class="border rounded-lg p-1.5">
+            </div>
+          </div>
+
+          <button onclick="saveGeneralSettings()" class="w-full bg-pastelOrange text-white font-bold py-2 rounded-xl shadow-md hover:bg-amber-500 transition mt-2">
+            💾 บันทึกข้อมูลทั่วไป
+          </button>
+        </div>
+
+        <!-- ADMIN TAB: GROUPS -->
+        <div id="adminContent-groups" class="admin-content hidden space-y-3">
+          <div class="flex justify-between items-center border-b pb-1.5">
+            <h4 class="font-bold text-slate-700">รายการกลุ่มสินค้า</h4>
+            <button onclick="openGroupForm()" class="bg-emerald-500 text-white text-[10px] px-2.5 py-1 rounded-lg font-bold hover:bg-emerald-600">
+              + เพิ่มกลุ่มใหม่
+            </button>
+          </div>
+
+          <!-- Group Form -->
+          <div id="groupFormBox" class="bg-slate-50 p-3 rounded-xl border border-slate-200 hidden space-y-2">
+            <h5 class="font-bold text-slate-700" id="groupFormTitle">เพิ่มกลุ่มสินค้าใหม่</h5>
+            <input type="hidden" id="groupEditIndex" value="-1">
+            <div class="grid grid-cols-2 gap-1.5">
+              <input type="text" id="groupInputTitle" placeholder="ชื่อกลุ่มสินค้า" class="border p-1.5 rounded-lg">
+              <input type="text" id="groupInputPrice" placeholder="ราคา (เช่น ฿150.-)" class="border p-1.5 rounded-lg">
+            </div>
+            <div class="grid grid-cols-2 gap-1.5">
+              <input type="text" id="groupInputTag" placeholder="หมวดหมู่ (เช่น กลุ่มตูน)" class="border p-1.5 rounded-lg">
+              <input type="text" id="groupInputLink" placeholder="ลิงก์ LINE สั่งซื้อ" class="border p-1.5 rounded-lg">
+            </div>
+            
+            <div class="space-y-0.5">
+              <label class="block text-[10px] font-bold text-slate-600">รูปภาพปกกลุ่ม</label>
+              <div class="flex flex-col sm:flex-row gap-1">
+                <input type="file" accept="image/*" onchange="handleGroupFileUpload(event)" class="text-[9px] file:py-1 file:px-2 file:rounded-md file:border-0 file:bg-pastelSky cursor-pointer">
+                <input type="text" id="groupInputImage" placeholder="หรือวาง URL รูปภาพ" class="flex-1 border p-1 rounded-lg">
+              </div>
+            </div>
+
+            <textarea id="groupInputDesc" placeholder="รายละเอียดกลุ่มย่อๆ" rows="2" class="w-full border p-1.5 rounded-lg"></textarea>
+            
+            <div class="flex space-x-1.5 pt-1">
+              <button onclick="saveGroupItem()" class="flex-1 bg-pastelSky text-slate-800 font-bold py-1.5 rounded-lg hover:bg-teal-300">บันทึกกลุ่ม</button>
+              <button onclick="closeGroupForm()" class="bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg">ยกเลิก</button>
+            </div>
+          </div>
+
+          <!-- Existing Groups List -->
+          <div class="space-y-1.5 max-h-56 overflow-y-auto" id="adminGroupsList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- ADMIN TAB: QUEUES -->
+        <div id="adminContent-queues" class="admin-content hidden space-y-3">
+          <div class="flex justify-between items-center border-b pb-1.5">
+            <h4 class="font-bold text-slate-700">รายการคิวงาน</h4>
+            <button onclick="openQueueForm()" class="bg-emerald-500 text-white text-[10px] px-2.5 py-1 rounded-lg font-bold hover:bg-emerald-600">
+              + เพิ่มคิวใหม่
+            </button>
+          </div>
+
+          <!-- Queue Form -->
+          <div id="queueFormBox" class="bg-slate-50 p-3 rounded-xl border border-slate-200 hidden space-y-2">
+            <h5 class="font-bold text-slate-700" id="queueFormTitle">เพิ่มคิวใหม่</h5>
+            <input type="hidden" id="queueEditIndex" value="-1">
+            <div class="grid grid-cols-2 gap-1.5">
+              <input type="text" id="queueInputCustomer" placeholder="ชื่อลูกค้า / รหัสคิว" class="border p-1.5 rounded-lg">
+              <input type="text" id="queueInputItem" placeholder="รายการที่สั่งซื้อ" class="border p-1.5 rounded-lg">
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600 mb-0.5">สถานะความคืบหน้า (%):</label>
+              <select id="queueInputProgress" class="w-full border p-1.5 rounded-lg bg-white">
+                <option value="0">0% (รับออเดอร์)</option>
+                <option value="10">10% (กำลังจัดเตรียม)</option>
+                <option value="25">25% (กำลังออกแบบ/ทำไฟล์)</option>
+                <option value="50">50% (รอการตรวจสอบ)</option>
+                <option value="75">75% (กำลังส่งมอบไฟล์)</option>
+                <option value="100">100% (เสร็จสิ้นเรียบร้อย)</option>
+              </select>
+            </div>
+            <div class="flex space-x-1.5 pt-1">
+              <button onclick="saveQueueItem()" class="flex-1 bg-pastelOrange text-white font-bold py-1.5 rounded-lg hover:bg-amber-500">บันทึกคิว</button>
+              <button onclick="closeQueueForm()" class="bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg">ยกเลิก</button>
+            </div>
+          </div>
+
+          <!-- Existing Queue List -->
+          <div class="space-y-1.5 max-h-56 overflow-y-auto" id="adminQueueList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="bg-slate-100 px-4 py-2 border-t border-slate-200 flex justify-between items-center text-[10px] text-slate-500">
+        <span>* บันทึกข้อมูลลงในเบราว์เซอร์อัตโนมัติ</span>
+        <button onclick="resetToDefaultData()" class="text-red-500 underline hover:text-red-700 font-bold">ล้างเป็นค่าเริ่มต้น</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // DEFAULT INITIAL DATA
+    const defaultData = {
+      adminPasscode: "1234",
+      shopName: "Pastel Art & Font Shop",
+      shopBio: "แหล่งรวมกลุ่มของตกแต่ง กลุ่มตูน กลุ่มฟอนต์ และไฟล์งานน่ารักๆ ลิขสิทธิ์แท้ 100%",
+      bannerUrl: "https://i.postimg.cc/cJSDqkVJ/line-oa-chat-261104-013813.jpg",
+      logoUrl: "https://placehold.co/150x150/FFB703/ffffff?text=PASTEL",
+      musicUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
+      noticeTitle: "📌 ข้อความสำคัญจากทางร้าน",
+      noticeText: "ยินดีต้อนรับสู่ร้านค้าของเราค่ะ! สนใจสมัครเข้ากลุ่มไหน สามารถทักแชทสอบถามหรือแนบสลิปผ่านทาง Line Official ได้เลยนะคะ ตอบไว มั่นใจได้ 100% ✨",
+      socials: {
+        line: "https://line.me",
+        facebook: "https://facebook.com",
+        instagram: "https://instagram.com",
+        tiktok: "https://tiktok.com"
+      },
+      groups: [
+        { title: "กลุ่มตูน Pastel Premium", price: "฿199.-", tag: "กลุ่มตูน", desc: "รวมการ์ตูนตกแต่งลายใหม่กว่า 1,000+ ชิ้น คมชัด HD", link: "https://line.me", img: "https://placehold.co/400x300/A8DADC/ffffff?text=Cartoon+Pack" },
+        { title: "กลุ่มฟอนต์ลายมือ น่ารักๆ", price: "฿150.-", tag: "กลุ่มฟอนต์", desc: "ฟอนต์ภาษาไทย-อังกฤษ ใช้องค์กร/การค้าได้ 50+ ฟอนต์", link: "https://line.me", img: "https://placehold.co/400x300/FFB703/ffffff?text=Handwriting+Fonts" },
+        { title: "กลุ่มของตกแต่งป้ายสินค้า", price: "฿129.-", tag: "ของตกแต่ง", desc: "กรอบป้าย อิโมจิ ตราสัญลักษณ์ พ่อค้าแม่ค้าออนไลน์", link: "https://line.me", img: "https://placehold.co/400x300/FFE494/333333?text=Decorations" },
+        { title: "กลุ่มฟอนต์หัวโปร่งมินิมอล", price: "฿99.-", tag: "กลุ่มฟอนต์", desc: "ฟอนต์มินิมอลสายเกาหลี พิมพ์งานเรียบหรู น่ารัก", link: "https://line.me", img: "https://placehold.co/400x300/FFCAD4/333333?text=Minimal+Font" }
+      ],
+      queues: [
+        { customer: "คุณเมย์ (Q-01)", item: "กลุ่มตูน + กลุ่มฟอนต์", progress: 100 },
+        { customer: "คุณพลอย (Q-02)", item: "กลุ่มฟอนต์ลายมือ", progress: 75 },
+        { customer: "คุณบิว (Q-03)", item: "เหมากรุ๊ปของตกแต่ง", progress: 50 },
+        { customer: "คุณแอน (Q-04)", item: "กลุ่มตูนพาสเทล", progress: 25 },
+        { customer: "คุณเคท (Q-05)", item: "กลุ่มฟอนต์มินิมอล", progress: 0 }
+      ]
+    };
+
+    // Load Data
+    let appData = JSON.parse(localStorage.getItem('imac_pastel_shop_data_v2')) || defaultData;
+    let activeFilter = 'ทั้งหมด';
+    let isAdminAuthenticated = false;
+
+    // Save Data
+    function saveData() {
+      localStorage.setItem('imac_pastel_shop_data_v2', JSON.stringify(appData));
+      renderApp();
+    }
+
+    // Reset Data
+    function resetToDefaultData() {
+      if(confirm("คุณต้องการล้างข้อมูลกลับเป็นค่าเริ่มต้นใช่หรือไม่?")) {
+        appData = JSON.parse(JSON.stringify(defaultData));
+        saveData();
+        closeGroupForm();
+        closeQueueForm();
+        alert("รีเซ็ตข้อมูลเรียบร้อยแล้ว!");
+      }
+    }
+
+    // Initialize App
+    window.onload = function() {
+      renderApp();
+      setupAudio();
+    };
+
+    function renderApp() {
+      document.getElementById('shopName').innerText = appData.shopName;
+      document.getElementById('shopBio').innerText = appData.shopBio;
+      document.getElementById('topBannerImg').src = appData.bannerUrl;
+      document.getElementById('shopLogoImg').src = appData.logoUrl;
+      document.getElementById('shopNoticeTitle').innerText = appData.noticeTitle;
+      document.getElementById('shopNoticeText').innerText = appData.noticeText;
+      document.getElementById('groupCountBadge').innerText = appData.groups.length;
+
+      renderSocials();
+      renderCategoryFilters();
+      renderGroups();
+      renderQueues();
+      fillAdminFields();
+    }
+
+    function renderSocials() {
+      const container = document.getElementById('socialLinksContainer');
+      const list = [
+        { name: 'LINE Official', icon: 'fa-brands fa-line', color: 'bg-emerald-500 hover:bg-emerald-600 text-white', url: appData.socials.line },
+        { name: 'Facebook', icon: 'fa-brands fa-facebook-f', color: 'bg-blue-600 hover:bg-blue-700 text-white', url: appData.socials.facebook },
+        { name: 'Instagram', icon: 'fa-brands fa-instagram', color: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white', url: appData.socials.instagram },
+        { name: 'TikTok', icon: 'fa-brands fa-tiktok', color: 'bg-slate-900 hover:bg-black text-white', url: appData.socials.tiktok }
+      ];
+
+      container.innerHTML = list.map(item => `
+        <a href="${item.url || '#'}" target="_blank" class="${item.color} p-2 rounded-xl flex items-center justify-center space-x-1.5 shadow-sm transition hover:scale-102 font-medium text-[11px]">
+          <i class="${item.icon} text-xs"></i>
+          <span>${item.name}</span>
+        </a>
+      `).join('');
+    }
+
+    function renderCategoryFilters() {
+      const container = document.getElementById('categoryFilterContainer');
+      const tags = ['ทั้งหมด', ...new Set(appData.groups.map(g => g.tag || 'ทั่วไป'))];
+
+      container.innerHTML = tags.map(tag => {
+        const isActive = activeFilter === tag;
+        return `
+          <button onclick="setFilter('${tag}')" class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold transition ${
+            isActive ? 'bg-pastelOrange text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+          }">
+            ${tag}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setFilter(tag) {
+      activeFilter = tag;
+      renderCategoryFilters();
+      renderGroups();
+    }
+
+    // Render Groups (2 Columns Grid Layout)
+    function renderGroups() {
+      const container = document.getElementById('groupsGrid');
+      const filtered = activeFilter === 'ทั้งหมด' 
+        ? appData.groups 
+        : appData.groups.filter(g => (g.tag || 'ทั่วไป') === activeFilter);
+
+      document.getElementById('totalGroupsTag').innerText = `รวม ${filtered.length} กลุ่ม`;
+
+      if(filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-8 text-center text-slate-400">
+            <i class="fa-solid fa-folder-open text-3xl mb-1"></i>
+            <p class="text-xs">ไม่พบรายการกลุ่ม</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((item) => `
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-24 bg-slate-100 overflow-hidden">
+              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x300/A8DADC/ffffff?text=Group'">
+              <span class="absolute top-1.5 left-1.5 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full text-[8px] font-bold text-slate-700 shadow-sm border border-slate-100">
+                🏷️ ${item.tag || 'ทั่วไป'}
+              </span>
+            </div>
+            
+            <div class="p-2.5">
+              <h4 class="font-bold text-slate-800 text-xs leading-tight line-clamp-1 mb-1">${item.title}</h4>
+              <p class="text-[10px] text-slate-500 line-clamp-2 leading-relaxed mb-2">${item.desc || 'ไม่มีรายละเอียด'}</p>
+            </div>
+          </div>
+
+          <div class="px-2.5 pb-2.5 pt-1 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-extrabold text-pastelOrange font-fredoka">${item.price}</span>
+            <a href="${item.link || appData.socials.line || '#'}" target="_blank" class="bg-pastelSky hover:bg-teal-300 text-slate-800 text-[10px] font-bold px-2 py-1 rounded-lg transition shadow-sm">
+              เข้ากลุ่ม <i class="fa-solid fa-arrow-right text-[8px]"></i>
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Queues
+    function renderQueues() {
+      const container = document.getElementById('queueListContainer');
+      const queues = appData.queues || [];
+
+      document.getElementById('totalQueueCount').innerText = queues.length;
+      document.getElementById('pendingQueueCount').innerText = queues.filter(q => q.progress < 100).length;
+      document.getElementById('completedQueueCount').innerText = queues.filter(q => q.progress == 100).length;
+
+      if(queues.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl p-6 text-center text-slate-400 border border-slate-100">
+            <p class="text-xs">ขณะนี้ยังไม่มีคิวค้างอยู่ในระบบ</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = queues.map((q, idx) => {
+        const isComplete = q.progress == 100;
+        let statusBadgeClass = "bg-amber-100 text-amber-700";
+        let statusText = "กำลังดำเนินการ";
+        
+        if (q.progress == 0) { statusBadgeClass = "bg-slate-100 text-slate-600"; statusText = "รอดำเนินการ"; }
+        else if (isComplete) { statusBadgeClass = "bg-emerald-100 text-emerald-700"; statusText = "ส่งงานแล้ว"; }
+
+        return `
+          <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-sm space-y-1.5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2 truncate">
+                <span class="w-5 h-5 rounded-full bg-pastelSky/30 text-pastelBlueDark flex items-center justify-center font-bold text-[10px] shrink-0">
+                  ${idx + 1}
+                </span>
+                <div class="truncate">
+                  <h4 class="font-bold text-slate-800 text-xs truncate">${q.customer}</h4>
+                  <p class="text-[10px] text-slate-500 truncate">${q.item}</p>
+                </div>
+              </div>
+              <span class="text-[9px] font-bold px-2 py-0.5 rounded-full shrink-0 ${statusBadgeClass}">
+                ${statusText} (${q.progress}%)
+              </span>
+            </div>
+
+            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden p-0.5 border border-slate-200/50">
+              <div class="h-full rounded-full transition-all duration-500 ${
+                isComplete ? 'bg-emerald-400' : 'bg-gradient-to-r from-pastelOrange to-amber-300'
+              }" style="width: ${q.progress}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Audio Controls
+    function setupAudio() {
+      const audio = document.getElementById('bgAudio');
+      audio.src = appData.musicUrl || '';
+    }
+
+    function toggleAudio() {
+      const audio = document.getElementById('bgAudio');
+      const icon = document.getElementById('playIcon');
+      const eq = document.getElementById('eqContainer');
+
+      if (!audio.src || audio.src.endsWith('#')) {
+        alert("กรุณาใส่ URL เพลง .mp3 ในระบบหลังบ้านก่อนนะคะ");
+        return;
+      }
+
+      if (audio.paused) {
+        audio.play().then(() => {
+          icon.className = "fa-solid fa-pause text-[9px]";
+          eq.classList.remove('hidden');
+        }).catch(err => {
+          alert("ไม่สามารถเล่นไฟล์เพลงได้ ตรวจสอบลิงก์ .mp3 อีกครั้ง");
+        });
+      } else {
+        audio.pause();
+        icon.className = "fa-solid fa-play text-[9px]";
+        eq.classList.add('hidden');
+      }
+    }
+
+    // Navigation Switcher
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-btn').forEach(el => {
+        el.classList.remove('text-pastelOrange');
+        el.classList.add('text-slate-400');
+      });
+
+      document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+      const activeNav = document.getElementById(`nav-${tabName}`);
+      activeNav.classList.remove('text-slate-400');
+      activeNav.classList.add('text-pastelOrange');
+    }
+
+    // Admin Auth Lock
+    function handleAdminClick() {
+      if (isAdminAuthenticated) {
+        openAdminModal();
+      } else {
+        document.getElementById('adminAuthModal').classList.remove('hidden');
+        document.getElementById('adminPasscodeInput').value = '';
+        document.getElementById('passcodeError').classList.add('hidden');
+      }
+    }
+
+    function verifyAdminPasscode() {
+      const enteredPass = document.getElementById('adminPasscodeInput').value;
+      const targetPass = appData.adminPasscode || '1234';
+
+      if (enteredPass === targetPass) {
+        isAdminAuthenticated = true;
+        closeAdminAuthModal();
+        openAdminModal();
+        document.getElementById('adminBadge').classList.remove('hidden');
+      } else {
+        document.getElementById('passcodeError').classList.remove('hidden');
+      }
+    }
+
+    function closeAdminAuthModal() {
+      document.getElementById('adminAuthModal').classList.add('hidden');
+    }
+
+    function logoutAdmin() {
+      isAdminAuthenticated = false;
+      document.getElementById('adminBadge').classList.add('hidden');
+      closeAdminModal();
+    }
+
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.remove('hidden');
+      fillAdminFields();
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function switchAdminTab(tab) {
+      document.querySelectorAll('.admin-tab-btn').forEach(b => {
+        b.classList.remove('bg-white', 'border-t-2', 'border-pastelOrange', 'text-slate-800');
+        b.classList.add('text-slate-500');
+      });
+      document.querySelectorAll('.admin-content').forEach(c => c.classList.add('hidden'));
+
+      document.getElementById(`adminTab-${tab}`).classList.add('bg-white', 'border-t-2', 'border-pastelOrange', 'text-slate-800');
+      document.getElementById(`adminTab-${tab}`).classList.remove('text-slate-500');
+      document.getElementById(`adminContent-${tab}`).classList.remove('hidden');
+    }
+
+    // Direct Base64 Image Upload
+    function readFileAsDataURL(file, callback) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        callback(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleBannerFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) readFileAsDataURL(file, (base64) => { document.getElementById('editBannerUrl').value = base64; });
+    }
+
+    function handleLogoFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) readFileAsDataURL(file, (base64) => { document.getElementById('editLogoUrl').value = base64; });
+    }
+
+    function handleGroupFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) readFileAsDataURL(file, (base64) => { document.getElementById('groupInputImage').value = base64; });
+    }
+
+    function fillAdminFields() {
+      document.getElementById('editShopName').value = appData.shopName || '';
+      document.getElementById('editShopBio').value = appData.shopBio || '';
+      document.getElementById('editBannerUrl').value = appData.bannerUrl || '';
+      document.getElementById('editLogoUrl').value = appData.logoUrl || '';
+      document.getElementById('editMusicUrl').value = appData.musicUrl || '';
+      document.getElementById('editNoticeTitle').value = appData.noticeTitle || '';
+      document.getElementById('editNoticeText').value = appData.noticeText || '';
+      document.getElementById('editAdminPasscode').value = appData.adminPasscode || '1234';
+      
+      document.getElementById('editSocialLine').value = appData.socials.line || '';
+      document.getElementById('editSocialFb').value = appData.socials.facebook || '';
+      document.getElementById('editSocialIg').value = appData.socials.instagram || '';
+      document.getElementById('editSocialTiktok').value = appData.socials.tiktok || '';
+
+      renderAdminGroupsList();
+      renderAdminQueueList();
+    }
+
+    function saveGeneralSettings() {
+      appData.shopName = document.getElementById('editShopName').value;
+      appData.shopBio = document.getElementById('editShopBio').value;
+      appData.bannerUrl = document.getElementById('editBannerUrl').value;
+      appData.logoUrl = document.getElementById('editLogoUrl').value;
+      appData.musicUrl = document.getElementById('editMusicUrl').value;
+      appData.noticeTitle = document.getElementById('editNoticeTitle').value;
+      appData.noticeText = document.getElementById('editNoticeText').value;
+      appData.adminPasscode = document.getElementById('editAdminPasscode').value || '1234';
+
+      appData.socials.line = document.getElementById('editSocialLine').value;
+      appData.socials.facebook = document.getElementById('editSocialFb').value;
+      appData.socials.instagram = document.getElementById('editSocialIg').value;
+      appData.socials.tiktok = document.getElementById('editSocialTiktok').value;
+
+      setupAudio();
+      saveData();
+      alert("บันทึกข้อมูลทั่วไปเรียบร้อยแล้ว! ✨");
+    }
+
+    // Admin Group Delete Function
+    function renderAdminGroupsList() {
+      const container = document.getElementById('adminGroupsList');
+      container.innerHTML = appData.groups.map((g, i) => `
+        <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-200 text-xs">
+          <div class="flex items-center space-x-2 truncate">
+            <img src="${g.img}" class="w-7 h-7 rounded object-cover" onerror="this.src='https://placehold.co/100'">
+            <div class="truncate">
+              <span class="font-bold block truncate">${g.title}</span>
+              <span class="text-pastelOrange font-bold text-[10px]">${g.price}</span>
+            </div>
+          </div>
+          <div class="flex space-x-1 shrink-0">
+            <button type="button" onclick="editGroupItem(${i})" class="bg-amber-400 text-white p-1.5 rounded-lg hover:bg-amber-500" title="แก้ไข">
+              <i class="fa-solid fa-pen text-[10px]"></i>
+            </button>
+            <button type="button" onclick="deleteGroupItem(${i})" class="bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600" title="ลบรายการ">
+              <i class="fa-solid fa-trash text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openGroupForm() {
+      document.getElementById('groupFormBox').classList.remove('hidden');
+      document.getElementById('groupFormTitle').innerText = "เพิ่มกลุ่มสินค้าใหม่";
+      document.getElementById('groupEditIndex').value = "-1";
+      document.getElementById('groupInputTitle').value = "";
+      document.getElementById('groupInputPrice').value = "";
+      document.getElementById('groupInputTag').value = "";
+      document.getElementById('groupInputLink').value = "";
+      document.getElementById('groupInputImage').value = "";
+      document.getElementById('groupInputDesc').value = "";
+    }
+
+    function closeGroupForm() {
+      document.getElementById('groupFormBox').classList.add('hidden');
+    }
+
+    function editGroupItem(index) {
+      const item = appData.groups[index];
+      openGroupForm();
+      document.getElementById('groupFormTitle').innerText = "แก้ไขกลุ่มสินค้า";
+      document.getElementById('groupEditIndex').value = index;
+      document.getElementById('groupInputTitle').value = item.title || "";
+      document.getElementById('groupInputPrice').value = item.price || "";
+      document.getElementById('groupInputTag').value = item.tag || "";
+      document.getElementById('groupInputLink').value = item.link || "";
+      document.getElementById('groupInputImage').value = item.img || "";
+      document.getElementById('groupInputDesc').value = item.desc || "";
+    }
+
+    function saveGroupItem() {
+      const idx = parseInt(document.getElementById('groupEditIndex').value);
+      const newItem = {
+        title: document.getElementById('groupInputTitle').value || "กลุ่มไม่มีชื่อ",
+        price: document.getElementById('groupInputPrice').value || "฿0.-",
+        tag: document.getElementById('groupInputTag').value || "ทั่วไป",
+        link: document.getElementById('groupInputLink').value || "#",
+        img: document.getElementById('groupInputImage').value || "https://placehold.co/400x300/A8DADC/ffffff?text=Group",
+        desc: document.getElementById('groupInputDesc').value || ""
+      };
+
+      if (idx === -1) {
+        appData.groups.push(newItem);
+      } else {
+        appData.groups[idx] = newItem;
+      }
+
+      saveData();
+      closeGroupForm();
+      renderAdminGroupsList();
+    }
+
+    function deleteGroupItem(index) {
+      if(confirm("ยืนยันลบกลุ่มสินค้านี้ใช่หรือไม่?")) {
+        appData.groups.splice(index, 1);
+        saveData();
+        renderAdminGroupsList();
+      }
+    }
+
+    // Admin Queue Delete Function
+    function renderAdminQueueList() {
+      const container = document.getElementById('adminQueueList');
+      container.innerHTML = appData.queues.map((q, i) => `
+        <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-200 text-xs">
+          <div class="truncate">
+            <span class="font-bold block truncate">${q.customer}</span>
+            <span class="text-[10px] text-slate-500 truncate">${q.item} - <strong class="text-emerald-600">${q.progress}%</strong></span>
+          </div>
+          <div class="flex space-x-1 shrink-0">
+            <button type="button" onclick="editQueueItem(${i})" class="bg-amber-400 text-white p-1.5 rounded-lg hover:bg-amber-500" title="แก้ไข">
+              <i class="fa-solid fa-pen text-[10px]"></i>
+            </button>
+            <button type="button" onclick="deleteQueueItem(${i})" class="bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600" title="ลบรายการ">
+              <i class="fa-solid fa-trash text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openQueueForm() {
+      document.getElementById('queueFormBox').classList.remove('hidden');
+      document.getElementById('queueFormTitle').innerText = "เพิ่มคิวใหม่";
+      document.getElementById('queueEditIndex').value = "-1";
+      document.getElementById('queueInputCustomer').value = "";
+      document.getElementById('queueInputItem').value = "";
+      document.getElementById('queueInputProgress').value = "0";
+    }
+
+    function closeQueueForm() {
+      document.getElementById('queueFormBox').classList.add('hidden');
+    }
+
+    function editQueueItem(index) {
+      const q = appData.queues[index];
+      openQueueForm();
+      document.getElementById('queueFormTitle').innerText = "แก้ไขคิวลูกค้า";
+      document.getElementById('queueEditIndex').value = index;
+      document.getElementById('queueInputCustomer').value = q.customer || "";
+      document.getElementById('queueInputItem').value = q.item || "";
+      document.getElementById('queueInputProgress').value = q.progress || 0;
+    }
+
+    function saveQueueItem() {
+      const idx = parseInt(document.getElementById('queueEditIndex').value);
+      const newItem = {
+        customer: document.getElementById('queueInputCustomer').value || "ลูกค้าทั่วไป",
+        item: document.getElementById('queueInputItem').value || "ไม่ระบุรายการ",
+        progress: parseInt(document.getElementById('queueInputProgress').value) || 0
+      };
+
+      if (idx === -1) {
+        appData.queues.push(newItem);
+      } else {
+        appData.queues[idx] = newItem;
+      }
+
+      saveData();
+      closeQueueForm();
+      renderAdminQueueList();
+    }
+
+    function deleteQueueItem(index) {
+      if(confirm("ยืนยันลบคิวลูกค้ารายการนี้ใช่หรือไม่?")) {
+        appData.queues.splice(index, 1);
+        saveData();
+        renderAdminQueueList();
+      }
+    }
+  </script>
+</body>
+</html>
