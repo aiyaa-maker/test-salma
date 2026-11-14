@@ -141,9 +141,9 @@
     <!-- MAIN DISPLAY SCREEN AREA (Scrollable) -->
     <div class="flex-1 bg-pastelCream/30 overflow-y-auto p-3.5 space-y-4" id="mainScreen">
 
-      <!-- TOP COVER BANNER -->
-      <div class="w-full rounded-2xl overflow-hidden shadow-sm border-2 border-white bg-white relative flex items-center justify-center min-h-[140px] max-h-[220px]">
-        <img id="topBannerImg" src="https://i.postimg.cc/cJSDqkVJ/line-oa-chat-261104-013813.jpg" alt="Shop Banner Cover" class="w-full h-auto max-h-[220px] object-contain" onerror="this.src='https://placehold.co/600x300/A8DADC/ffffff?text=Pastel+Shop+Banner'">
+      <!-- TOP COVER BANNER (ปรับให้ความสูงปรับตามขนาดรูปจริงอัตโนมัติ) -->
+      <div class="w-full rounded-2xl overflow-hidden shadow-sm border-2 border-white bg-white relative flex items-center justify-center">
+        <img id="topBannerImg" src="" alt="Shop Banner Cover" class="w-full h-auto block object-contain" onerror="this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=ยังไม่ได้ตั้งค่ารูปปก'">
         <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-slate-700 shadow-sm border border-slate-100">
           ✨ Official Store
         </div>
@@ -160,9 +160,9 @@
           <div class="flex items-start space-x-2.5 mt-0.5">
             <div class="text-amber-600 text-base mt-0.5"><i class="fa-solid fa-note-sticky"></i></div>
             <div class="flex-1">
-              <h3 class="font-bold text-amber-900 text-xs mb-0.5" id="shopNoticeTitle">ข้อความสำคัญจากร้านค้า</h3>
+              <h3 class="font-bold text-amber-900 text-xs mb-0.5" id="shopNoticeTitle">ยังไม่ได้ตั้งค่าประกาศ</h3>
               <p class="text-[11px] text-amber-800 leading-relaxed font-light whitespace-pre-line" id="shopNoticeText">
-                ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเราค่ะ! สอบถามกลุ่มหรือสั่งซื้อกดที่ปุ่มโซเชียลด้านล่างได้เลยน้า 💖
+                กรุณาตั้งค่าข้อมูลและรายละเอียดร้านค้าผ่านทางระบบหลังบ้าน
               </p>
             </div>
           </div>
@@ -172,90 +172,58 @@
         <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex items-center space-x-3.5">
           <div class="relative shrink-0">
             <div class="w-16 h-16 rounded-2xl overflow-hidden border-2 border-pastelSky shadow-sm bg-slate-50 flex items-center justify-center">
-              <img id="shopLogoImg" src="https://placehold.co/150x150/FFB703/ffffff?text=LOGO" alt="Shop Logo" class="w-full h-full object-cover">
+              <img id="shopLogoImg" src="" alt="Shop Logo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x150/e2e8f0/94a3b8?text=LOGO'">
             </div>
             <div class="absolute -bottom-1 -right-1 bg-green-500 text-white w-4 h-4 rounded-full flex items-center justify-center text-[9px] border-2 border-white" title="Online">
               ✓
             </div>
           </div>
           <div class="flex-1 min-w-0">
-            <h2 class="text-base font-bold text-slate-800 font-fredoka truncate" id="shopName">Pastel Art & Font Shop</h2>
-            <p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5" id="shopBio">แหล่งรวมกลุ่มของตกแต่ง กลุ่มตูน กลุ่มฟอนต์ และไฟล์งานน่ารักๆ ลิขสิทธิ์แท้ 100%</p>
-            
-            <div class="flex items-center space-x-2 mt-2 text-[10px] text-slate-600">
-              <span class="bg-slate-100 px-2 py-0.5 rounded-full"><i class="fa-solid fa-layer-group text-pastelOrange mr-1"></i><span id="groupCountBadge">0</span> กลุ่ม</span>
-              <span class="bg-slate-100 px-2 py-0.5 rounded-full"><i class="fa-solid fa-clock text-pastelSky mr-1"></i>ตอบไว</span>
-            </div>
+            <h2 class="text-base font-bold text-slate-800 font-fredoka truncate" id="shopName">ยังไม่ได้ตั้งค่าชื่อร้าน</h2>
+            <p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5" id="shopBio">ยังไม่ได้ตั้งค่าคำอธิบายร้านค้า</p>
           </div>
         </div>
 
-        <!-- ================= PRICE RATE TABLE (เรทราคา) ================= -->
-        <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-100 space-y-2.5">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xs font-bold text-slate-700 flex items-center">
-              <span class="w-5 h-5 rounded-lg bg-pastelPink/40 text-pink-600 flex items-center justify-center mr-1.5 text-[10px]">
-                <i class="fa-solid fa-coins"></i>
-              </span>
-              เรทราคา
-            </h3>
-            <span class="text-[9px] text-slate-400 bg-slate-50 px-2 py-0.5 rounded-full border border-slate-100">อัปเดตล่าสุด</span>
-          </div>
-
-          <div class="overflow-hidden rounded-xl border border-slate-100">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr class="bg-pastelSky/30 text-slate-700 text-[10px] font-bold">
-                  <th class="py-2 px-2.5">รายการ</th>
-                  <th class="py-2 px-2 text-center w-[24%]">ราคา</th>
-                  <th class="py-2 px-2 text-center w-[28%]">ราคาเชิงพาณิชย์</th>
-                </tr>
-              </thead>
-              <tbody id="homePriceTableBody" class="divide-y divide-slate-100 text-[11px]">
-                <!-- Rendered by JS -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Toggle Show More Button -->
-          <div id="togglePriceTableContainer" class="hidden pt-0.5">
-            <button onclick="togglePriceTable()" id="togglePriceTableBtn" class="w-full py-1.5 bg-slate-50 hover:bg-pastelCream text-slate-600 hover:text-amber-700 text-[10px] font-semibold rounded-xl border border-slate-200/70 transition flex items-center justify-center space-x-1">
-              <span>ดูเพิ่มเติม</span>
-              <i class="fa-solid fa-chevron-down text-[9px]"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Social Channels -->
+        <!-- Social Channels (เรียงลงมา บรรทัดละ 1 แอป มีไอคอนด้านหน้าและชื่อบัญชี) -->
         <div>
-          <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 px-1"><i class="fa-solid fa-paper-plane mr-1 text-pastelOrange"></i>ช่องทางการติดต่อ</h3>
-          <div class="grid grid-cols-2 gap-2" id="socialLinksContainer">
+          <h3 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 px-1">
+            <i class="fa-solid fa-paper-plane mr-1 text-pastelOrange"></i>ช่องทางการติดต่อ
+          </h3>
+          <div class="space-y-2" id="socialLinksContainer">
             <!-- Social Buttons Dynamic -->
           </div>
         </div>
 
       </div>
 
-      <!-- TAB 2: PRICE (Grid 2 คอลัมน์) -->
+      <!-- TAB 2: PRICE (ตารางเรทราคาแสดงเต็มทุกรายการ) -->
       <div id="tab-price" class="tab-content hidden space-y-3.5">
-        
-        <!-- Header & Category Filter Tags -->
-        <div class="bg-white p-3 rounded-2xl border border-slate-100 shadow-sm space-y-2">
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 space-y-3">
           <div class="flex items-center justify-between">
-            <h2 class="text-sm font-bold text-slate-800"><i class="fa-solid fa-tags text-pastelOrange mr-1.5"></i>รายการกลุ่มสินค้า</h2>
-            <span class="text-[10px] bg-pastelSky/30 text-slate-700 px-2 py-0.5 rounded-full font-medium" id="totalGroupsTag">รวม 0 กลุ่ม</span>
+            <h2 class="text-sm font-bold text-slate-800 flex items-center">
+              <span class="w-6 h-6 rounded-lg bg-pastelPink/40 text-pink-600 flex items-center justify-center mr-2 text-xs">
+                <i class="fa-solid fa-coins"></i>
+              </span>
+              เรทราคาร้านค้าทั้งหมด
+            </h2>
+            <span class="text-[10px] text-slate-400 bg-slate-50 px-2 py-0.5 rounded-full border border-slate-100">Price Rate</span>
           </div>
 
-          <!-- Filter Tags -->
-          <div class="flex flex-wrap gap-1 pt-1.5 border-t border-slate-100" id="categoryFilterContainer">
-            <!-- Filter buttons -->
+          <div class="overflow-hidden rounded-xl border border-slate-100">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-pastelSky/30 text-slate-700 text-[10px] font-bold">
+                  <th class="py-2.5 px-3">รายการ</th>
+                  <th class="py-2.5 px-2 text-center w-[28%]">ราคาปกติ</th>
+                  <th class="py-2.5 px-2 text-center w-[32%]">ราคาเชิงพาณิชย์</th>
+                </tr>
+              </thead>
+              <tbody id="priceTabTableBody" class="divide-y divide-slate-100 text-[11px]">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
           </div>
         </div>
-
-        <!-- Groups Grid (2 Columns Layout with 1:1 Aspect Ratio Images) -->
-        <div class="grid grid-cols-2 gap-2.5" id="groupsGrid">
-          <!-- Group Cards Dynamic Insertion -->
-        </div>
-
       </div>
 
       <!-- TAB 3: Q CHECK (เช็คคิวงาน) -->
@@ -370,9 +338,6 @@
         <button onclick="switchAdminTab('pricerate')" id="adminTab-pricerate" class="admin-tab-btn px-2.5 py-1.5 rounded-t-xl font-bold text-[11px] text-slate-500 hover:text-slate-800 shrink-0">
           💰 ตารางราคา
         </button>
-        <button onclick="switchAdminTab('groups')" id="adminTab-groups" class="admin-tab-btn px-2.5 py-1.5 rounded-t-xl font-bold text-[11px] text-slate-500 hover:text-slate-800 shrink-0">
-          🎀 จัดการกลุ่ม
-        </button>
         <button onclick="switchAdminTab('queues')" id="adminTab-queues" class="admin-tab-btn px-2.5 py-1.5 rounded-t-xl font-bold text-[11px] text-slate-500 hover:text-slate-800 shrink-0">
           👤 จัดการคิว
         </button>
@@ -429,13 +394,25 @@
             <textarea id="editNoticeText" rows="2" class="w-full border rounded-lg p-2 focus:ring-1 focus:ring-pastelSky outline-none"></textarea>
           </div>
 
-          <div class="pt-2 border-t space-y-1.5">
-            <h5 class="font-bold text-slate-600">ลิงก์โซเชียลสั่งซื้อ</h5>
-            <div class="grid grid-cols-2 gap-1.5">
-              <input type="text" id="editSocialLine" placeholder="LINE Link" class="border rounded-lg p-1.5">
-              <input type="text" id="editSocialFb" placeholder="Facebook Link" class="border rounded-lg p-1.5">
-              <input type="text" id="editSocialIg" placeholder="IG Link" class="border rounded-lg p-1.5">
-              <input type="text" id="editSocialTiktok" placeholder="TikTok Link" class="border rounded-lg p-1.5">
+          <div class="pt-2 border-t space-y-2">
+            <h5 class="font-bold text-slate-600">ช่องทางการติดต่อ (ชื่อบัญชีและลิงก์)</h5>
+            <div class="space-y-2">
+              <div class="grid grid-cols-2 gap-1.5">
+                <input type="text" id="editSocialLineName" placeholder="ชื่อบัญชี Line" class="border rounded-lg p-1.5 text-[11px]">
+                <input type="text" id="editSocialLineLink" placeholder="LINE URL" class="border rounded-lg p-1.5 text-[11px]">
+              </div>
+              <div class="grid grid-cols-2 gap-1.5">
+                <input type="text" id="editSocialFbName" placeholder="ชื่อบัญชี Facebook" class="border rounded-lg p-1.5 text-[11px]">
+                <input type="text" id="editSocialFbLink" placeholder="Facebook URL" class="border rounded-lg p-1.5 text-[11px]">
+              </div>
+              <div class="grid grid-cols-2 gap-1.5">
+                <input type="text" id="editSocialIgName" placeholder="ชื่อบัญชี Instagram" class="border rounded-lg p-1.5 text-[11px]">
+                <input type="text" id="editSocialIgLink" placeholder="Instagram URL" class="border rounded-lg p-1.5 text-[11px]">
+              </div>
+              <div class="grid grid-cols-2 gap-1.5">
+                <input type="text" id="editSocialTiktokName" placeholder="ชื่อบัญชี TikTok" class="border rounded-lg p-1.5 text-[11px]">
+                <input type="text" id="editSocialTiktokLink" placeholder="TikTok URL" class="border rounded-lg p-1.5 text-[11px]">
+              </div>
             </div>
           </div>
 
@@ -447,10 +424,7 @@
         <!-- ADMIN TAB: PRICE RATE TABLE -->
         <div id="adminContent-pricerate" class="admin-content hidden space-y-3">
           <div class="flex justify-between items-center border-b pb-1.5">
-            <div>
-              <h4 class="font-bold text-slate-700">จัดการตารางราคาหน้าโฮม</h4>
-              <p class="text-[10px] text-slate-400">* 3 รายการบนสุดจะแสดงเป็นหลักในหน้าโฮม</p>
-            </div>
+            <h4 class="font-bold text-slate-700">จัดการตารางเรทราคา</h4>
             <button onclick="openPriceRateForm()" class="bg-emerald-500 text-white text-[10px] px-2.5 py-1 rounded-lg font-bold hover:bg-emerald-600 shrink-0">
               + เพิ่มรายการ
             </button>
@@ -482,50 +456,6 @@
 
           <!-- Existing Price Rate List -->
           <div class="space-y-1.5 max-h-60 overflow-y-auto" id="adminPriceRateList">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
-
-        <!-- ADMIN TAB: GROUPS -->
-        <div id="adminContent-groups" class="admin-content hidden space-y-3">
-          <div class="flex justify-between items-center border-b pb-1.5">
-            <h4 class="font-bold text-slate-700">รายการกลุ่มสินค้า</h4>
-            <button onclick="openGroupForm()" class="bg-emerald-500 text-white text-[10px] px-2.5 py-1 rounded-lg font-bold hover:bg-emerald-600">
-              + เพิ่มกลุ่มใหม่
-            </button>
-          </div>
-
-          <!-- Group Form -->
-          <div id="groupFormBox" class="bg-slate-50 p-3 rounded-xl border border-slate-200 hidden space-y-2">
-            <h5 class="font-bold text-slate-700" id="groupFormTitle">เพิ่มกลุ่มสินค้าใหม่</h5>
-            <input type="hidden" id="groupEditIndex" value="-1">
-            <div class="grid grid-cols-2 gap-1.5">
-              <input type="text" id="groupInputTitle" placeholder="ชื่อกลุ่มสินค้า" class="border p-1.5 rounded-lg">
-              <input type="text" id="groupInputPrice" placeholder="ราคา (เช่น ฿150.-)" class="border p-1.5 rounded-lg">
-            </div>
-            <div class="grid grid-cols-2 gap-1.5">
-              <input type="text" id="groupInputTag" placeholder="หมวดหมู่ (เช่น กลุ่มตูน)" class="border p-1.5 rounded-lg">
-              <input type="text" id="groupInputLink" placeholder="ลิงก์ LINE สั่งซื้อ" class="border p-1.5 rounded-lg">
-            </div>
-            
-            <div class="space-y-0.5">
-              <label class="block text-[10px] font-bold text-slate-600">รูปภาพปกกลุ่ม (แนะนำสัดส่วน 1:1)</label>
-              <div class="flex flex-col sm:flex-row gap-1">
-                <input type="file" accept="image/*" onchange="handleGroupFileUpload(event)" class="text-[9px] file:py-1 file:px-2 file:rounded-md file:border-0 file:bg-pastelSky cursor-pointer">
-                <input type="text" id="groupInputImage" placeholder="หรือวาง URL รูปภาพ" class="flex-1 border p-1 rounded-lg">
-              </div>
-            </div>
-
-            <textarea id="groupInputDesc" placeholder="รายละเอียดกลุ่มย่อๆ" rows="2" class="w-full border p-1.5 rounded-lg"></textarea>
-            
-            <div class="flex space-x-1.5 pt-1">
-              <button onclick="saveGroupItem()" class="flex-1 bg-pastelSky text-slate-800 font-bold py-1.5 rounded-lg hover:bg-teal-300">บันทึกกลุ่ม</button>
-              <button onclick="closeGroupForm()" class="bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg">ยกเลิก</button>
-            </div>
-          </div>
-
-          <!-- Existing Groups List -->
-          <div class="space-y-1.5 max-h-56 overflow-y-auto" id="adminGroupsList">
             <!-- Rendered by JS -->
           </div>
         </div>
@@ -584,69 +514,51 @@
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // DEFAULT INITIAL DATA
+    // DEFAULT INITIAL DATA (ข้อมูลเปล่า พร้อมให้ตั้งค่า)
     const defaultData = {
       adminPasscode: "1234",
-      shopName: "Pastel Art & Font Shop",
-      shopBio: "แหล่งรวมกลุ่มของตกแต่ง กลุ่มตูน กลุ่มฟอนต์ และไฟล์งานน่ารักๆ ลิขสิทธิ์แท้ 100%",
-      bannerUrl: "https://i.postimg.cc/cJSDqkVJ/line-oa-chat-261104-013813.jpg",
-      logoUrl: "https://placehold.co/150x150/FFB703/ffffff?text=PASTEL",
-      musicUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
-      noticeTitle: "📌 ข้อความสำคัญจากทางร้าน",
-      noticeText: "ยินดีต้อนรับสู่ร้านค้าของเราค่ะ! สนใจสมัครเข้ากลุ่มไหน สามารถทักแชทสอบถามหรือแนบสลิปผ่านทาง Line Official ได้เลยนะคะ ตอบไว มั่นใจได้ 100% ✨",
+      shopName: "ยังไม่ได้ตั้งค่าชื่อร้าน",
+      shopBio: "ยังไม่ได้ตั้งค่าคำอธิบายร้านค้า",
+      bannerUrl: "",
+      logoUrl: "",
+      musicUrl: "",
+      noticeTitle: "ยังไม่ได้ตั้งค่าประกาศ",
+      noticeText: "กรุณาตั้งค่าข้อมูลและรายละเอียดร้านค้าผ่านทางระบบหลังบ้าน (ไอคอนฟันเฟืองด้านบน)",
       socials: {
-        line: "https://line.me",
-        facebook: "https://facebook.com",
-        instagram: "https://instagram.com",
-        tiktok: "https://tiktok.com"
+        lineName: "ยังไม่ได้ตั้งค่าบัญชี Line",
+        lineLink: "",
+        fbName: "ยังไม่ได้ตั้งค่าบัญชี Facebook",
+        fbLink: "",
+        igName: "ยังไม่ได้ตั้งค่าบัญชี Instagram",
+        igLink: "",
+        tiktokName: "ยังไม่ได้ตั้งค่าบัญชี TikTok",
+        tiktokLink: ""
       },
-      priceRates: [
-        { name: "ป้ายบัญชี / ป้ายโอนเงิน", normalPrice: "89.-", commercialPrice: "180.-" },
-        { name: "วาดจิบิตัวละคร (Chibi)", normalPrice: "150.-", commercialPrice: "300.-" },
-        { name: "ปกเพจ / แบนเนอร์ร้าน", normalPrice: "199.-", commercialPrice: "390.-" },
-        { name: "ออกแบบโลโก้ร้านค้า", normalPrice: "250.-", commercialPrice: "500.-" },
-        { name: "กรอบรีวิว / กรอบสินค้า", normalPrice: "59.-", commercialPrice: "120.-" }
-      ],
-      groups: [
-        { title: "กลุ่มตูน Pastel Premium", price: "฿199.-", tag: "กลุ่มตูน", desc: "รวมการ์ตูนตกแต่งลายใหม่กว่า 1,000+ ชิ้น คมชัด HD", link: "https://line.me", img: "https://placehold.co/400x400/A8DADC/ffffff?text=Cartoon+Pack" },
-        { title: "กลุ่มฟอนต์ลายมือ น่ารักๆ", price: "฿150.-", tag: "กลุ่มฟอนต์", desc: "ฟอนต์ภาษาไทย-อังกฤษ ใช้องค์กร/การค้าได้ 50+ ฟอนต์", link: "https://line.me", img: "https://placehold.co/400x400/FFB703/ffffff?text=Handwriting+Fonts" },
-        { title: "กลุ่มของตกแต่งป้ายสินค้า", price: "฿129.-", tag: "ของตกแต่ง", desc: "กรอบป้าย อิโมจิ ตราสัญลักษณ์ พ่อค้าแม่ค้าออนไลน์", link: "https://line.me", img: "https://placehold.co/400x400/FFE494/333333?text=Decorations" },
-        { title: "กลุ่มฟอนต์หัวโปร่งมินิมอล", price: "฿99.-", tag: "กลุ่มฟอนต์", desc: "ฟอนต์มินิมอลสายเกาหลี พิมพ์งานเรียบหรู น่ารัก", link: "https://line.me", img: "https://placehold.co/400x400/FFCAD4/333333?text=Minimal+Font" }
-      ],
-      queues: [
-        { customer: "คุณเมย์ (Q-01)", item: "กลุ่มตูน + กลุ่มฟอนต์", progress: 100 },
-        { customer: "คุณพลอย (Q-02)", item: "กลุ่มฟอนต์ลายมือ", progress: 75 },
-        { customer: "คุณบิว (Q-03)", item: "เหมากรุ๊ปของตกแต่ง", progress: 50 },
-        { customer: "คุณแอน (Q-04)", item: "กลุ่มตูนพาสเทล", progress: 25 },
-        { customer: "คุณเคท (Q-05)", item: "กลุ่มฟอนต์มินิมอล", progress: 0 }
-      ]
+      priceRates: [],
+      queues: []
     };
 
-    // Load Data & Migrate if priceRates missing from older localStorage
-    let savedStorage = JSON.parse(localStorage.getItem('imac_pastel_shop_data_v2'));
+    // Load Data
+    let savedStorage = JSON.parse(localStorage.getItem('imac_pastel_shop_data_v4'));
     let appData = savedStorage ? { ...defaultData, ...savedStorage } : defaultData;
-    if (!appData.priceRates) {
-      appData.priceRates = JSON.parse(JSON.stringify(defaultData.priceRates));
-    }
+    if (!appData.priceRates) appData.priceRates = [];
+    if (!appData.queues) appData.queues = [];
+    if (!appData.socials) appData.socials = defaultData.socials;
 
-    let activeFilter = 'ทั้งหมด';
     let isAdminAuthenticated = false;
-    let isPriceTableExpanded = false;
 
     // Save Data
     function saveData() {
-      localStorage.setItem('imac_pastel_shop_data_v2', JSON.stringify(appData));
+      localStorage.setItem('imac_pastel_shop_data_v4', JSON.stringify(appData));
       renderApp();
     }
 
     // Reset Data
     function resetToDefaultData() {
-      if(confirm("คุณต้องการล้างข้อมูลกลับเป็นค่าเริ่มต้นใช่หรือไม่?")) {
+      if(confirm("คุณต้องการล้างข้อมูลกลับเป็นค่าเริ่มต้น (ค่าว่าง) ใช่หรือไม่?")) {
         appData = JSON.parse(JSON.stringify(defaultData));
-        isPriceTableExpanded = false;
         saveData();
         closePriceRateForm();
-        closeGroupForm();
         closeQueueForm();
         alert("รีเซ็ตข้อมูลเรียบร้อยแล้ว!");
       }
@@ -665,145 +577,56 @@
       document.getElementById('shopLogoImg').src = appData.logoUrl;
       document.getElementById('shopNoticeTitle').innerText = appData.noticeTitle;
       document.getElementById('shopNoticeText').innerText = appData.noticeText;
-      document.getElementById('groupCountBadge').innerText = appData.groups.length;
 
-      renderHomePriceTable();
+      renderPriceTabTable();
       renderSocials();
-      renderCategoryFilters();
-      renderGroups();
       renderQueues();
       fillAdminFields();
     }
 
-    // Render Home Price Rate Table (Show 3 highlights + Expandable)
-    function renderHomePriceTable() {
-      const tbody = document.getElementById('homePriceTableBody');
-      const toggleContainer = document.getElementById('togglePriceTableContainer');
-      const toggleBtn = document.getElementById('togglePriceTableBtn');
+    // Render Price Tab Table (แสดงรายการเรทราคาทั้งหมดแบบเต็มๆ ในหน้า Price)
+    function renderPriceTabTable() {
+      const tbody = document.getElementById('priceTabTableBody');
       const rates = appData.priceRates || [];
 
       if (rates.length === 0) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="3" class="py-4 text-center text-slate-400 text-[10px]">ยังไม่มีรายการราคา</td>
+            <td colspan="3" class="py-6 text-center text-slate-400 text-[11px]">
+              ยังไม่มีรายการเรทราคา (สามารถเพิ่มได้ในระบบหลังบ้าน)
+            </td>
           </tr>
         `;
-        toggleContainer.classList.add('hidden');
         return;
       }
 
-      const visibleRates = isPriceTableExpanded ? rates : rates.slice(0, 3);
-
-      tbody.innerHTML = visibleRates.map((item, idx) => `
+      tbody.innerHTML = rates.map((item, idx) => `
         <tr class="${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'} hover:bg-pastelYellow/20 transition">
-          <td class="py-2 px-2.5 font-medium text-slate-700">
-            ${idx < 3 ? '<span class="text-pastelOrange mr-1">★</span>' : ''}${item.name}
-          </td>
-          <td class="py-2 px-2 text-center font-bold text-pastelBlueDark font-fredoka">${item.normalPrice}</td>
-          <td class="py-2 px-2 text-center font-bold text-amber-600 font-fredoka">${item.commercialPrice}</td>
+          <td class="py-2.5 px-3 font-medium text-slate-700">${item.name}</td>
+          <td class="py-2.5 px-2 text-center font-bold text-pastelBlueDark font-fredoka">${item.normalPrice}</td>
+          <td class="py-2.5 px-2 text-center font-bold text-amber-600 font-fredoka">${item.commercialPrice}</td>
         </tr>
       `).join('');
-
-      if (rates.length > 3) {
-        toggleContainer.classList.remove('hidden');
-        const remainingCount = rates.length - 3;
-        if (isPriceTableExpanded) {
-          toggleBtn.innerHTML = `<span>ย่อรายการ</span> <i class="fa-solid fa-chevron-up text-[9px]"></i>`;
-        } else {
-          toggleBtn.innerHTML = `<span>ดูเพิ่มเติม (+${remainingCount} รายการ)</span> <i class="fa-solid fa-chevron-down text-[9px]"></i>`;
-        }
-      } else {
-        toggleContainer.classList.add('hidden');
-      }
     }
 
-    function togglePriceTable() {
-      isPriceTableExpanded = !isPriceTableExpanded;
-      renderHomePriceTable();
-    }
-
+    // Render Socials (เรียงลงมา บรรทัดละ 1 แอป มีไอคอนด้านหน้าและชื่อบัญชี)
     function renderSocials() {
       const container = document.getElementById('socialLinksContainer');
+      const socials = appData.socials || {};
       const list = [
-        { name: 'LINE Official', icon: 'fa-brands fa-line', color: 'bg-emerald-500 hover:bg-emerald-600 text-white', url: appData.socials.line },
-        { name: 'Facebook', icon: 'fa-brands fa-facebook-f', color: 'bg-blue-600 hover:bg-blue-700 text-white', url: appData.socials.facebook },
-        { name: 'Instagram', icon: 'fa-brands fa-instagram', color: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white', url: appData.socials.instagram },
-        { name: 'TikTok', icon: 'fa-brands fa-tiktok', color: 'bg-slate-900 hover:bg-black text-white', url: appData.socials.tiktok }
+        { name: socials.lineName || 'ยังไม่ได้ตั้งค่าบัญชี Line', icon: 'fa-brands fa-line', color: 'bg-emerald-500 hover:bg-emerald-600 text-white', url: socials.lineLink },
+        { name: socials.fbName || 'ยังไม่ได้ตั้งค่าบัญชี Facebook', icon: 'fa-brands fa-facebook-f', color: 'bg-blue-600 hover:bg-blue-700 text-white', url: socials.fbLink },
+        { name: socials.igName || 'ยังไม่ได้ตั้งค่าบัญชี Instagram', icon: 'fa-brands fa-instagram', color: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white', url: socials.igLink },
+        { name: socials.tiktokName || 'ยังไม่ได้ตั้งค่าบัญชี TikTok', icon: 'fa-brands fa-tiktok', color: 'bg-slate-900 hover:bg-black text-white', url: socials.tiktokLink }
       ];
 
       container.innerHTML = list.map(item => `
-        <a href="${item.url || '#'}" target="_blank" class="${item.color} p-2 rounded-xl flex items-center justify-center space-x-1.5 shadow-sm transition hover:scale-102 font-medium text-[11px]">
-          <i class="${item.icon} text-xs"></i>
-          <span>${item.name}</span>
+        <a href="${item.url || '#'}" target="_blank" class="${item.color} p-2.5 rounded-xl flex items-center space-x-3 shadow-sm transition hover:scale-[1.01] font-medium text-xs">
+          <div class="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+            <i class="${item.icon} text-sm"></i>
+          </div>
+          <span class="truncate">${item.name}</span>
         </a>
-      `).join('');
-    }
-
-    function renderCategoryFilters() {
-      const container = document.getElementById('categoryFilterContainer');
-      const tags = ['ทั้งหมด', ...new Set(appData.groups.map(g => g.tag || 'ทั่วไป'))];
-
-      container.innerHTML = tags.map(tag => {
-        const isActive = activeFilter === tag;
-        return `
-          <button onclick="setFilter('${tag}')" class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold transition ${
-            isActive ? 'bg-pastelOrange text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-          }">
-            ${tag}
-          </button>
-        `;
-      }).join('');
-    }
-
-    function setFilter(tag) {
-      activeFilter = tag;
-      renderCategoryFilters();
-      renderGroups();
-    }
-
-    // Render Groups (2 Columns Grid Layout with 1:1 Aspect Ratio Images)
-    function renderGroups() {
-      const container = document.getElementById('groupsGrid');
-      const filtered = activeFilter === 'ทั้งหมด' 
-        ? appData.groups 
-        : appData.groups.filter(g => (g.tag || 'ทั่วไป') === activeFilter);
-
-      document.getElementById('totalGroupsTag').innerText = `รวม ${filtered.length} กลุ่ม`;
-
-      if(filtered.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full py-8 text-center text-slate-400">
-            <i class="fa-solid fa-folder-open text-3xl mb-1"></i>
-            <p class="text-xs">ไม่พบรายการกลุ่ม</p>
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = filtered.map((item) => `
-        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between group">
-          <div>
-            <!-- Aspect Ratio 1:1 Image Container -->
-            <div class="relative w-full aspect-square bg-slate-100 overflow-hidden">
-              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x400/A8DADC/ffffff?text=Group'">
-              <span class="absolute top-1.5 left-1.5 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full text-[8px] font-bold text-slate-700 shadow-sm border border-slate-100">
-                🏷️ ${item.tag || 'ทั่วไป'}
-              </span>
-            </div>
-            
-            <div class="p-2.5">
-              <h4 class="font-bold text-slate-800 text-xs leading-tight line-clamp-1 mb-1">${item.title}</h4>
-              <p class="text-[10px] text-slate-500 line-clamp-2 leading-relaxed mb-2">${item.desc || 'ไม่มีรายละเอียด'}</p>
-            </div>
-          </div>
-
-          <div class="px-2.5 pb-2.5 pt-1 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-xs font-extrabold text-pastelOrange font-fredoka">${item.price}</span>
-            <a href="${item.link || appData.socials.line || '#'}" target="_blank" class="bg-pastelSky hover:bg-teal-300 text-slate-800 text-[10px] font-bold px-2 py-1 rounded-lg transition shadow-sm">
-              เข้ากลุ่ม <i class="fa-solid fa-arrow-right text-[8px]"></i>
-            </a>
-          </div>
-        </div>
       `).join('');
     }
 
@@ -979,11 +802,6 @@
       if (file) readFileAsDataURL(file, (base64) => { document.getElementById('editLogoUrl').value = base64; });
     }
 
-    function handleGroupFileUpload(event) {
-      const file = event.target.files[0];
-      if (file) readFileAsDataURL(file, (base64) => { document.getElementById('groupInputImage').value = base64; });
-    }
-
     function fillAdminFields() {
       document.getElementById('editShopName').value = appData.shopName || '';
       document.getElementById('editShopBio').value = appData.shopBio || '';
@@ -994,13 +812,17 @@
       document.getElementById('editNoticeText').value = appData.noticeText || '';
       document.getElementById('editAdminPasscode').value = appData.adminPasscode || '1234';
       
-      document.getElementById('editSocialLine').value = appData.socials.line || '';
-      document.getElementById('editSocialFb').value = appData.socials.facebook || '';
-      document.getElementById('editSocialIg').value = appData.socials.instagram || '';
-      document.getElementById('editSocialTiktok').value = appData.socials.tiktok || '';
+      const socials = appData.socials || {};
+      document.getElementById('editSocialLineName').value = socials.lineName || '';
+      document.getElementById('editSocialLineLink').value = socials.lineLink || '';
+      document.getElementById('editSocialFbName').value = socials.fbName || '';
+      document.getElementById('editSocialFbLink').value = socials.fbLink || '';
+      document.getElementById('editSocialIgName').value = socials.igName || '';
+      document.getElementById('editSocialIgLink').value = socials.igLink || '';
+      document.getElementById('editSocialTiktokName').value = socials.tiktokName || '';
+      document.getElementById('editSocialTiktokLink').value = socials.tiktokLink || '';
 
       renderAdminPriceRateList();
-      renderAdminGroupsList();
       renderAdminQueueList();
     }
 
@@ -1014,10 +836,16 @@
       appData.noticeText = document.getElementById('editNoticeText').value;
       appData.adminPasscode = document.getElementById('editAdminPasscode').value || '1234';
 
-      appData.socials.line = document.getElementById('editSocialLine').value;
-      appData.socials.facebook = document.getElementById('editSocialFb').value;
-      appData.socials.instagram = document.getElementById('editSocialIg').value;
-      appData.socials.tiktok = document.getElementById('editSocialTiktok').value;
+      appData.socials = {
+        lineName: document.getElementById('editSocialLineName').value,
+        lineLink: document.getElementById('editSocialLineLink').value,
+        fbName: document.getElementById('editSocialFbName').value,
+        fbLink: document.getElementById('editSocialFbLink').value,
+        igName: document.getElementById('editSocialIgName').value,
+        igLink: document.getElementById('editSocialIgLink').value,
+        tiktokName: document.getElementById('editSocialTiktokName').value,
+        tiktokLink: document.getElementById('editSocialTiktokLink').value
+      };
 
       setupAudio();
       saveData();
@@ -1037,9 +865,7 @@
       container.innerHTML = rates.map((r, i) => `
         <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-200 text-xs">
           <div class="truncate pr-2">
-            <span class="font-bold text-slate-800 block truncate">
-              ${i < 3 ? '<span class="text-pastelOrange mr-1">★</span>' : ''}${r.name}
-            </span>
+            <span class="font-bold text-slate-800 block truncate">${r.name}</span>
             <span class="text-[10px] text-slate-500">
               ปกติ: <strong class="text-pastelBlueDark">${r.normalPrice}</strong> | เชิงพาณิชย์: <strong class="text-amber-600">${r.commercialPrice}</strong>
             </span>
@@ -1108,93 +934,17 @@
       }
     }
 
-    // ================= ADMIN: GROUPS CRUD =================
-    function renderAdminGroupsList() {
-      const container = document.getElementById('adminGroupsList');
-      container.innerHTML = appData.groups.map((g, i) => `
-        <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-200 text-xs">
-          <div class="flex items-center space-x-2 truncate">
-            <img src="${g.img}" class="w-7 h-7 rounded object-cover aspect-square" onerror="this.src='https://placehold.co/100'">
-            <div class="truncate">
-              <span class="font-bold block truncate">${g.title}</span>
-              <span class="text-pastelOrange font-bold text-[10px]">${g.price}</span>
-            </div>
-          </div>
-          <div class="flex space-x-1 shrink-0">
-            <button type="button" onclick="editGroupItem(${i})" class="bg-amber-400 text-white p-1.5 rounded-lg hover:bg-amber-500" title="แก้ไข">
-              <i class="fa-solid fa-pen text-[10px]"></i>
-            </button>
-            <button type="button" onclick="deleteGroupItem(${i})" class="bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600" title="ลบรายการ">
-              <i class="fa-solid fa-trash text-[10px]"></i>
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function openGroupForm() {
-      document.getElementById('groupFormBox').classList.remove('hidden');
-      document.getElementById('groupFormTitle').innerText = "เพิ่มกลุ่มสินค้าใหม่";
-      document.getElementById('groupEditIndex').value = "-1";
-      document.getElementById('groupInputTitle').value = "";
-      document.getElementById('groupInputPrice').value = "";
-      document.getElementById('groupInputTag').value = "";
-      document.getElementById('groupInputLink').value = "";
-      document.getElementById('groupInputImage').value = "";
-      document.getElementById('groupInputDesc').value = "";
-    }
-
-    function closeGroupForm() {
-      document.getElementById('groupFormBox').classList.add('hidden');
-    }
-
-    function editGroupItem(index) {
-      const item = appData.groups[index];
-      openGroupForm();
-      document.getElementById('groupFormTitle').innerText = "แก้ไขกลุ่มสินค้า";
-      document.getElementById('groupEditIndex').value = index;
-      document.getElementById('groupInputTitle').value = item.title || "";
-      document.getElementById('groupInputPrice').value = item.price || "";
-      document.getElementById('groupInputTag').value = item.tag || "";
-      document.getElementById('groupInputLink').value = item.link || "";
-      document.getElementById('groupInputImage').value = item.img || "";
-      document.getElementById('groupInputDesc').value = item.desc || "";
-    }
-
-    function saveGroupItem() {
-      const idx = parseInt(document.getElementById('groupEditIndex').value);
-      const newItem = {
-        title: document.getElementById('groupInputTitle').value || "กลุ่มไม่มีชื่อ",
-        price: document.getElementById('groupInputPrice').value || "฿0.-",
-        tag: document.getElementById('groupInputTag').value || "ทั่วไป",
-        link: document.getElementById('groupInputLink').value || "#",
-        img: document.getElementById('groupInputImage').value || "https://placehold.co/400x400/A8DADC/ffffff?text=Group",
-        desc: document.getElementById('groupInputDesc').value || ""
-      };
-
-      if (idx === -1) {
-        appData.groups.push(newItem);
-      } else {
-        appData.groups[idx] = newItem;
-      }
-
-      saveData();
-      closeGroupForm();
-      renderAdminGroupsList();
-    }
-
-    function deleteGroupItem(index) {
-      if(confirm("ยืนยันลบกลุ่มสินค้านี้ใช่หรือไม่?")) {
-        appData.groups.splice(index, 1);
-        saveData();
-        renderAdminGroupsList();
-      }
-    }
-
     // ================= ADMIN: QUEUES CRUD =================
     function renderAdminQueueList() {
       const container = document.getElementById('adminQueueList');
-      container.innerHTML = appData.queues.map((q, i) => `
+      const queues = appData.queues || [];
+
+      if (queues.length === 0) {
+        container.innerHTML = `<p class="text-center text-slate-400 py-4 text-[11px]">ยังไม่มีคิวงาน</p>`;
+        return;
+      }
+
+      container.innerHTML = queues.map((q, i) => `
         <div class="flex items-center justify-between bg-slate-50 p-2 rounded-xl border border-slate-200 text-xs">
           <div class="truncate">
             <span class="font-bold block truncate">${q.customer}</span>
@@ -1242,6 +992,8 @@
         item: document.getElementById('queueInputItem').value || "ไม่ระบุรายการ",
         progress: parseInt(document.getElementById('queueInputProgress').value) || 0
       };
+
+      if (!appData.queues) appData.queues = [];
 
       if (idx === -1) {
         appData.queues.push(newItem);
